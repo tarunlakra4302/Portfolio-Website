@@ -1,0 +1,542 @@
+@import "tailwindcss";
+@import "tw-animate-css";
+
+@custom-variant dark (&:is(.dark *));
+
+
+/* ✅ Fixed: Single scroll container - no double scrolling */
+html {
+  overflow-x: hidden;
+  overflow-y: auto;
+  scroll-padding-top: 60px;
+  overscroll-behavior: none;
+  scroll-behavior: smooth;
+  height: 100%;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  height: auto;
+  min-height: 100%;
+  overflow: visible;
+  position: relative;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+#__next {
+  min-height: 100vh;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+/* Smooth transitions globally */
+* {
+  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* Force passive scroll listeners for better performance */
+* {
+  touch-action: pan-y;
+}
+
+/* Prevent layout shift during navigation */
+@media (prefers-reduced-motion: no-preference) {
+  :root {
+    scroll-behavior: smooth;
+  }
+}
+
+/* Improve page transition performance */
+body > * {
+  will-change: auto;
+}
+
+/* Prevent flash of unstyled content */
+body {
+  opacity: 1;
+  transition: opacity 0.3s ease-in-out;
+}
+
+/* Balloons container - ensure it doesn't block content */
+.balloons-container,
+.balloons-container * {
+  pointer-events: none !important;
+  position: fixed !important;
+  z-index: 9999 !important;
+  top: 0 !important;
+  left: 0 !important;
+  width: 100% !important;
+  height: 100% !important;
+}
+
+/* GPU acceleration for animated elements */
+[data-animate],
+[style*="transform"],
+[style*="opacity"] {
+  transform: translateZ(0);
+  backface-visibility: hidden;
+  perspective: 1000px;
+}
+
+/* Optimize Framer Motion components */
+[data-projection-id] {
+  transform: translate3d(0, 0, 0);
+  backface-visibility: hidden;
+}
+
+section {
+  overflow: visible;
+}
+
+main {
+  isolation: isolate;
+  overflow: visible;
+  position: relative;
+}
+
+/* Smooth scroll animations */
+@media (prefers-reduced-motion: no-preference) {
+  html {
+    scroll-behavior: smooth;
+  }
+
+  * {
+    animation-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+  }
+}
+
+/* Disable animations for users who prefer reduced motion */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+/* Optimize heavy components */
+.layered-text-container {
+  transform: translateZ(0);
+  backface-visibility: hidden;
+}
+
+.layered-text-container li {
+  transform: translateZ(0);
+  backface-visibility: hidden;
+}
+
+/* Improve font rendering */
+* {
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeLegibility;
+}
+
+/* Prevent layout shifts during animations */
+img,
+video {
+  max-width: 100%;
+  height: auto;
+}
+
+/* Container utilities for consistent layout */
+.page-container {
+  width: 100%;
+  max-width: 1600px;
+  margin-left: auto;
+  margin-right: auto;
+  padding-left: 1rem;
+  padding-right: 1rem;
+}
+
+@media (min-width: 640px) {
+  .page-container {
+    padding-left: 1.5rem;
+    padding-right: 1.5rem;
+  }
+}
+
+@media (min-width: 768px) {
+  .page-container {
+    padding-left: 2rem;
+    padding-right: 2rem;
+  }
+}
+
+@media (min-width: 1024px) {
+  .page-container {
+    padding-left: 3rem;
+    padding-right: 3rem;
+  }
+}
+
+/* Ensure form inputs are always interactive */
+input,
+textarea,
+button,
+button[type="submit"] {
+  pointer-events: auto !important;
+  touch-action: manipulation;
+}
+
+/* Fix for inputs in transformed containers */
+form,
+form input,
+form textarea,
+form button {
+  transform: translateZ(0);
+  backface-visibility: hidden;
+  pointer-events: auto !important;
+}
+
+/* Optimize button transitions */
+button,
+a {
+  transition-property: transform, opacity, background-color, color, border-color;
+  transition-duration: 0.2s;
+  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+button:hover,
+a:hover {
+  transform: translateZ(0);
+}
+
+/* Optimize canvas rendering */
+canvas {
+  image-rendering: -webkit-optimize-contrast;
+  image-rendering: crisp-edges;
+}
+
+/* LayeredText component responsive styles */
+@media (max-width: 767px) {
+  .layered-text-container {
+    font-size: var(--md-font-size) !important;
+  }
+  .layered-text-container li {
+    height: var(--md-height) !important;
+    transform: translateX(var(--md-translateX)) skew(var(--skew-x), -30deg) scaleY(var(--scale-y)) !important;
+  }
+}
+
+@theme inline {
+  --animate-shine: shine var(--duration) infinite linear;
+  --shadow: var(----shadow);
+  --heading-font-weight: var(----heading-font-weight);
+  --base-font-weight: var(----base-font-weight);
+  --reverse-box-shadow-y: var(----reverse-box-shadow-y);
+  --reverse-box-shadow-x: var(----reverse-box-shadow-x);
+  --box-shadow-y: var(----box-shadow-y);
+  --box-shadow-x: var(----box-shadow-x);
+  --border-radius: var(----border-radius);
+  --color-ring-offset: var(----ring-offset);
+  --color-ring: var(----ring);
+  --color-mtext: var(----mtext);
+  --color-text: var(----text);
+  --color-border: var(----border);
+  --color-blank: var(----blank);
+  --color-bw: var(----bw);
+  --color-bg: var(----bg);
+  --color-overlay: var(----overlay);
+  --color-main: var(----main);
+  --color-secondaryBlack: #212121;
+
+  /* Shadcn theme colors */
+  --color-background: var(----background);
+  --color-foreground: var(----foreground);
+  --color-primary: var(----primary);
+  --color-primary-foreground: var(----primary-foreground);
+  --color-secondary: var(----secondary);
+  --color-secondary-foreground: var(----secondary-foreground);
+  --color-destructive: var(----destructive);
+  --color-destructive-foreground: var(----destructive-foreground);
+  --color-accent: var(----accent);
+  --color-accent-foreground: var(----accent-foreground);
+  --color-input: var(----input);
+
+  /* Button shadow utilities */
+  --shadow-shadow: var(--box-shadow-x) var(--box-shadow-y) 0px 0px var(--border);
+
+  /* Border radius */
+  --radius-base: 5px;
+
+  /* Box shadow translate values */
+  --translate-boxShadowX: 4px;
+  --translate-boxShadowY: 4px;
+  --translate-reverseBoxShadowX: -4px;
+  --translate-reverseBoxShadowY: -4px;
+  --shadow-2xl: var(----shadow-2xl);
+  --shadow-xl: var(----shadow-xl);
+  --shadow-lg: var(----shadow-lg);
+  --shadow-md: var(----shadow-md);
+  --shadow-sm: var(----shadow-sm);
+  --shadow-xs: var(----shadow-xs);
+  --shadow-2xs: var(----shadow-2xs);
+  --radius: var(----radius);
+  --font-mono: var(----font-mono);
+  --font-serif: var(----font-serif);
+  --font-sans: var(----font-sans);
+  --color-sidebar-ring: var(----sidebar-ring);
+  --color-sidebar-border: var(----sidebar-border);
+  --color-sidebar-accent-foreground: var(----sidebar-accent-foreground);
+  --color-sidebar-accent: var(----sidebar-accent);
+  --color-sidebar-primary-foreground: var(----sidebar-primary-foreground);
+  --color-sidebar-primary: var(----sidebar-primary);
+  --color-sidebar-foreground: var(----sidebar-foreground);
+  --color-sidebar: var(--sidebar);
+  --color-chart-5: var(----chart-5);
+  --color-chart-4: var(----chart-4);
+  --color-chart-3: var(----chart-3);
+  --color-chart-2: var(----chart-2);
+  --color-chart-1: var(----chart-1);
+  --color-muted-foreground: var(----muted-foreground);
+  --color-muted: var(----muted);
+  --color-popover-foreground: var(----popover-foreground);
+  --color-popover: var(----popover);
+  --color-card-foreground: var(----card-foreground);
+  --color-card: var(----card);
+
+  @keyframes shine {
+    0% {
+      background-position: 0% 0%;
+    }
+    50% {
+      background-position: 100% 100%;
+    }
+    to {
+      background-position: 0% 0%;
+    }
+  }
+}
+
+:root {
+  --main: #88aaee;
+  --overlay: rgba(0, 0, 0, 0.8);
+  --bg: #dfe5f2;
+  --bw: #fff;
+  --blank: #000;
+  --border: #000;
+  --text: #000;
+  --mtext: #000;
+  --ring: #000;
+  --ring-offset: #fff;
+  --border-radius: 5px;
+  --box-shadow-x: 4px;
+  --box-shadow-y: 4px;
+  --reverse-box-shadow-x: -4px;
+  --reverse-box-shadow-y: -4px;
+  --base-font-weight: 500;
+  --heading-font-weight: 700;
+  --shadow: var(--box-shadow-x) var(--box-shadow-y) 0px 0px var(--border);
+
+  /* Shadcn UI theme variables */
+  --background: 0 0% 100%;
+  --foreground: 0 0% 3.9%;
+  --primary: 0 0% 9%;
+  --primary-foreground: 0 0% 98%;
+  --secondary: 0 0% 96.1%;
+  --secondary-foreground: 0 0% 9%;
+  --destructive: 0 84.2% 60.2%;
+  --destructive-foreground: 0 0% 98%;
+  --accent: 0 0% 96.1%;
+  --accent-foreground: 0 0% 9%;
+  --input: 0 0% 89.8%;
+  --card: hsl(48 33.33% 97.06%);
+  --card-foreground: hsl(60 2.56% 7.65%);
+  --popover: hsl(0 0% 100%);
+  --popover-foreground: hsl(50.77 19.40% 13.14%);
+  --muted: hsl(44.00 29.41% 90%);
+  --muted-foreground: hsl(50.00 2.36% 50.20%);
+  --chart-1: hsl(18.28 57.14% 43.92%);
+  --chart-2: hsl(251.45 84.62% 74.51%);
+  --chart-3: hsl(46.15 28.26% 81.96%);
+  --chart-4: hsl(256.55 49.15% 88.43%);
+  --chart-5: hsl(17.78 60% 44.12%);
+  --sidebar: hsl(51.43 25.93% 94.71%);
+  --sidebar-foreground: hsl(60 2.52% 23.33%);
+  --sidebar-primary: hsl(15.11 55.56% 52.35%);
+  --sidebar-primary-foreground: hsl(0 0% 98.43%);
+  --sidebar-accent: hsl(46.15 22.81% 88.82%);
+  --sidebar-accent-foreground: hsl(0 0% 20.39%);
+  --sidebar-border: hsl(0 0% 92.16%);
+  --sidebar-ring: hsl(0 0% 70.98%);
+  --font-sans: ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, 'Noto Sans', sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
+  --font-serif: ui-serif, Georgia, Cambria, "Times New Roman", Times, serif;
+  --font-mono: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+  --radius: 0.5rem;
+  --shadow-2xs: 0 1px 3px 0px hsl(0 0% 0% / 0.05);
+  --shadow-xs: 0 1px 3px 0px hsl(0 0% 0% / 0.05);
+  --shadow-sm: 0 1px 3px 0px hsl(0 0% 0% / 0.10), 0 1px 2px -1px hsl(0 0% 0% / 0.10);
+  --shadow-md: 0 1px 3px 0px hsl(0 0% 0% / 0.10), 0 2px 4px -1px hsl(0 0% 0% / 0.10);
+  --shadow-lg: 0 1px 3px 0px hsl(0 0% 0% / 0.10), 0 4px 6px -1px hsl(0 0% 0% / 0.10);
+  --shadow-xl: 0 1px 3px 0px hsl(0 0% 0% / 0.10), 0 8px 10px -1px hsl(0 0% 0% / 0.10);
+  --shadow-2xl: 0 1px 3px 0px hsl(0 0% 0% / 0.25);
+}
+
+.dark {
+  --bg: #272933;
+  --bw: #212121;
+  --blank: #fff;
+  --border: #000;
+  --text: #e6e6e6;
+  --mtext: #000;
+  --ring: #fff;
+  --ring-offset: #000;
+  --shadow: var(--box-shadow-x) var(--box-shadow-y) 0px 0px var(--border);
+
+  /* Shadcn UI dark theme variables */
+  --background: 0 0% 3.9%;
+  --foreground: 0 0% 98%;
+  --primary: 0 0% 98%;
+  --primary-foreground: 0 0% 9%;
+  --secondary: 0 0% 14.9%;
+  --secondary-foreground: 0 0% 98%;
+  --destructive: 0 62.8% 30.6%;
+  --destructive-foreground: 0 0% 98%;
+  --accent: 0 0% 14.9%;
+  --accent-foreground: 0 0% 98%;
+  --input: 0 0% 14.9%;
+  --card: hsl(60 2.70% 14.51%);
+  --card-foreground: hsl(48 33.33% 97.06%);
+  --popover: hsl(60 2.13% 18.43%);
+  --popover-foreground: hsl(60 5.45% 89.22%);
+  --muted: hsl(60 3.85% 10.20%);
+  --muted-foreground: hsl(51.43 8.86% 69.02%);
+  --chart-1: hsl(18.28 57.14% 43.92%);
+  --chart-2: hsl(251.45 84.62% 74.51%);
+  --chart-3: hsl(48 10.64% 9.22%);
+  --chart-4: hsl(248.28 25.22% 22.55%);
+  --chart-5: hsl(17.78 60% 44.12%);
+  --sidebar: hsl(30 3.33% 11.76%);
+  --sidebar-foreground: hsl(46.15 9.77% 73.92%);
+  --sidebar-primary: hsl(0 0% 20.39%);
+  --sidebar-primary-foreground: hsl(0 0% 98.43%);
+  --sidebar-accent: hsl(60 3.45% 5.69%);
+  --sidebar-accent-foreground: hsl(46.15 9.77% 73.92%);
+  --sidebar-border: hsl(0 0% 92.16%);
+  --sidebar-ring: hsl(0 0% 70.98%);
+  --font-sans: ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, 'Noto Sans', sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
+  --font-serif: ui-serif, Georgia, Cambria, "Times New Roman", Times, serif;
+  --font-mono: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+  --radius: 0.5rem;
+  --shadow-2xs: 0 1px 3px 0px hsl(0 0% 0% / 0.05);
+  --shadow-xs: 0 1px 3px 0px hsl(0 0% 0% / 0.05);
+  --shadow-sm: 0 1px 3px 0px hsl(0 0% 0% / 0.10), 0 1px 2px -1px hsl(0 0% 0% / 0.10);
+  --shadow-md: 0 1px 3px 0px hsl(0 0% 0% / 0.10), 0 2px 4px -1px hsl(0 0% 0% / 0.10);
+  --shadow-lg: 0 1px 3px 0px hsl(0 0% 0% / 0.10), 0 4px 6px -1px hsl(0 0% 0% / 0.10);
+  --shadow-xl: 0 1px 3px 0px hsl(0 0% 0% / 0.10), 0 8px 10px -1px hsl(0 0% 0% / 0.10);
+  --shadow-2xl: 0 1px 3px 0px hsl(0 0% 0% / 0.25);
+}
+
+/* Removed @layer base to avoid Tailwind 4 conflicts - using direct CSS instead */
+
+@layer base {
+  * {
+    @apply border-border outline-ring/50;
+  }
+  body {
+    @apply bg-background text-foreground;
+  }
+}
+
+/* View Transitions API - Smooth page transitions */
+@view-transition {
+  navigation: auto;
+}
+
+::view-transition-old(root),
+::view-transition-new(root) {
+  animation-duration: 0.4s;
+  animation-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+  mix-blend-mode: normal;
+}
+
+::view-transition-old(root) {
+  animation-name: fade-out;
+}
+
+::view-transition-new(root) {
+  animation-name: fade-in;
+}
+
+@keyframes fade-out {
+  from {
+    opacity: 1;
+  }
+  to {
+    opacity: 0;
+  }
+}
+
+@keyframes fade-in {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+/* Custom smooth animations */
+@keyframes slideUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes slideDown {
+  from {
+    opacity: 0;
+    transform: translateY(-20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes scaleIn {
+  from {
+    opacity: 0;
+    transform: scale(0.95);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+/* Animation utility classes */
+.animate-slide-up {
+  animation: slideUp 0.6s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+}
+
+.animate-slide-down {
+  animation: slideDown 0.6s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+}
+
+.animate-scale-in {
+  animation: scaleIn 0.5s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+}
+
+/* Force hardship link color */
+a[href*="pinterest"],
+a[href*="pinterest"] *,
+.hardship-text,
+.hardship-text * {
+  color: #581c87 !important;
+}
+
