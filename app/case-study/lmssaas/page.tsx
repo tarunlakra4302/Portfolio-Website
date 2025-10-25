@@ -3,6 +3,7 @@
 import React, { useEffect, useState } from 'react'
 import { useRouter } from 'next/navigation'
 import Link from 'next/link'
+import Image from 'next/image'
 import { motion } from 'framer-motion'
 import { ArrowLeft, Copy, Check, ExternalLink } from 'lucide-react'
 import { SlidingNumber } from '@/components/ui/sliding-number'
@@ -139,9 +140,11 @@ export default function LMSSaaSCaseStudy() {
             </h2>
           }
         >
-          <img
+          <Image
             src="/LMS.jpg"
             alt="LMS SAAS Platform interface"
+            width={1200}
+            height={800}
             className="mx-auto rounded-2xl object-cover h-full object-left-top"
             draggable={false}
           />
@@ -590,13 +593,13 @@ export default function LMSSaaSCaseStudy() {
 
       {/* THANKS FOR READING */}
       <ThanksForReading
-        previousProject={{
+        nextProject={{
           title: "RouteMate",
           url: "/case-study/routemate"
         }}
-        nextProject={{
-          title: "StreamSphere",
-          url: "/case-study/streamsphere"
+        previousProject={{
+          title: "Signalist",
+          url: "/case-study/signalist"
         }}
       />
 

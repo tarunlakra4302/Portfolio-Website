@@ -3,6 +3,7 @@
 import React, { useEffect, useState } from 'react'
 import { useRouter } from 'next/navigation'
 import Link from 'next/link'
+import Image from 'next/image'
 import { motion } from 'framer-motion'
 import { ArrowLeft, Copy, Check, ExternalLink, CheckCircle } from 'lucide-react'
 import { SlidingNumber } from '@/components/ui/sliding-number'
@@ -140,9 +141,11 @@ export default function PublishCaseStudy() {
             </h2>
           }
         >
-          <img
+          <Image
             src="/RouteMate.jpg"
             alt="RouteMate fleet management platform interface"
+            width={1200}
+            height={800}
             className="mx-auto rounded-2xl object-contain w-full h-full pb-20"
             draggable={false}
           />
@@ -796,6 +799,10 @@ export default function PublishCaseStudy() {
       {/* THANKS FOR READING */}
       <ThanksForReading
         nextProject={{
+          title: "StreamSphere",
+          url: "/case-study/streamsphere"
+        }}
+        previousProject={{
           title: "LMS SaaS Platform",
           url: "/case-study/lmssaas"
         }}

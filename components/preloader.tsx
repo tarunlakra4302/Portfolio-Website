@@ -29,10 +29,19 @@ interface PreloaderProps {
 }
 
 export default function Preloader({ onComplete }: PreloaderProps) {
- 
+
   const [index, setIndex] = useState(0)
   const [dimension, setDimension] = useState({ width: 0, height: 0 })
   const [isExiting, setIsExiting] = useState(false)
+
+  // Prevent scrolling during preloader
+  useEffect(() => {
+    document.body.style.overflow = 'hidden'
+
+    return () => {
+      document.body.style.overflow = 'unset'
+    }
+  }, [])
 
   useEffect(() => {
     setDimension({ width: window.innerWidth, height: window.innerHeight })

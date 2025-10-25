@@ -1,6 +1,7 @@
 "use client"
 
 import React, { useState, useEffect } from 'react'
+import Image from 'next/image'
 import { motion } from 'framer-motion'
 import { DottedSurface } from '@/components/dotted-surface'
 
@@ -154,15 +155,13 @@ export function PersonalDashboard() {
                 >
                 <div className="flex items-center gap-2 sm:gap-2.5 w-full overflow-hidden">
                   {/* Album Art */}
-                  <div className="flex-shrink-0 w-12 h-12 sm:w-14 sm:h-14 md:w-16 md:h-16">
-                    <img
+                  <div className="flex-shrink-0 w-12 h-12 sm:w-14 sm:h-14 md:w-16 md:h-16 relative">
+                    <Image
                       src={song.albumArt}
                       alt={`${song.title} album art`}
-                      className="w-full h-full rounded-md object-cover"
-                      loading="lazy"
-                      onError={(e) => {
-                        e.currentTarget.src = 'data:image/svg+xml,%3Csvg xmlns="http://www.w3.org/2000/svg" width="100" height="100"%3E%3Crect fill="%23F3F4F6" width="100" height="100"/%3E%3Ctext x="50%25" y="50%25" dominant-baseline="middle" text-anchor="middle" fill="%23808080" font-size="40"%3E🎵%3C/text%3E%3C/svg%3E'
-                      }}
+                      fill
+                      className="rounded-md object-cover"
+                      unoptimized
                     />
                   </div>
 

@@ -1,6 +1,7 @@
 "use client"
 
 import React, { useState, useEffect } from 'react'
+import Image from 'next/image'
 import { useRouter } from 'next/navigation'
 import { LinkPreview } from '@/components/ui/link-preview'
 import { Button } from '@/components/ui/button'
@@ -81,10 +82,12 @@ export default function EjectPage() {
               className="font-bold relative overflow-hidden text-xs sm:text-sm md:text-base px-6 py-1.5 sm:px-8 sm:py-2 md:px-10 md:py-2.5"
             >
               {/* GIF Background */}
-              <img
+              <Image
                 src="https://i.pinimg.com/originals/71/fb/91/71fb9176f16357776802391df14b4e40.gif"
                 alt="Rewind animation"
-                className="absolute inset-0 w-full h-full object-cover transition-opacity duration-300 pointer-events-none"
+                fill
+                unoptimized
+                className="object-cover transition-opacity duration-300 pointer-events-none"
                 style={{
                   opacity: isRewindHovered ? 1 : 0,
                   filter: 'brightness(1.5)'

@@ -1,6 +1,7 @@
 "use client"
 
 import * as React from "react";
+import Image from "next/image";
 import { Instagram, Twitter, Github, ChevronDown } from "lucide-react";
 
 const ULogo = (props: React.SVGProps<SVGSVGElement>) => (
@@ -151,7 +152,7 @@ const GlassCard = React.forwardRef<HTMLDivElement, GlassCardProps>(
                 style={{ top: "30px", right: "30px" }}
               >
                 {logoSrc ? (
-                  <img src={logoSrc} alt="Logo" className="w-5 h-5" />
+                  <Image src={logoSrc} alt="Logo" width={20} height={20} className="w-5 h-5" />
                 ) : (
                   <ULogo className="w-5 fill-black" />
                 )}

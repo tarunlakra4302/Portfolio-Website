@@ -1,6 +1,7 @@
 "use client"
 
 import React from 'react'
+import Image from 'next/image'
 import { useRouter } from 'next/navigation'
 import { motion } from 'framer-motion'
 import { ArrowLeft } from 'lucide-react'
@@ -129,9 +130,12 @@ export default function CaseStudyPage({ params }: { params: { id: string } }) {
           transition={{ duration: 0.8, delay: 0.2 }}
           className="max-w-6xl mx-auto"
         >
-          <img
+          <Image
             src={`https://picsum.photos/1200/600?random=${caseStudy.id}`}
             alt={caseStudy.title}
+            width={1200}
+            height={500}
+            unoptimized
             className="w-full h-[500px] object-cover rounded-2xl shadow-2xl"
           />
         </motion.div>

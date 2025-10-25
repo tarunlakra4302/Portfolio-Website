@@ -1,6 +1,7 @@
 "use client"
 
 import React, { useState, useCallback, useMemo } from 'react'
+import Image from 'next/image'
 import { DotLottieReact } from '@lottiefiles/dotlottie-react';
 import { motion, AnimatePresence } from 'framer-motion'
 import AnimatedGradientBackground from '@/components/ui/animated-gradient-background'
@@ -121,10 +122,12 @@ export default function Page() {
               className="font-bold relative overflow-hidden text-xs sm:text-sm md:text-base px-4 py-[9px] sm:px-8 sm:py-2 md:px-10 md:py-2.5"
             >
             {/* GIF Background */}
-            <img
+            <Image
               src="https://i.pinimg.com/originals/71/fb/91/71fb9176f16357776802391df14b4e40.gif"
               alt="Eject animation"
-              className="absolute inset-0 w-full h-full object-cover transition-opacity duration-300 pointer-events-none"
+              fill
+              unoptimized
+              className="object-cover transition-opacity duration-300 pointer-events-none"
               style={{
                 opacity: isEjectHovered ? 1 : 0,
                 filter: 'brightness(1.5)'
@@ -273,10 +276,11 @@ export default function Page() {
                     <FollowerPointerCard key={`pointer-${project.id}`} title={project.title.split(':')[0]} className="w-full max-w-full aspect-video">
                       <GlassCard className="w-full h-full" logoSrc="/SignalistLogo.svg">
                         <div className="absolute inset-0 [transform:translate3d(0,0,26px)] overflow-hidden rounded-[50px] flex items-center justify-center">
-                          <img
+                          <Image
                             src="/Signalist.jpg"
                             alt={project.title}
-                            className="w-full h-full object-cover"
+                            fill
+                            className="object-cover"
                           />
                         </div>
                       </GlassCard>
@@ -286,10 +290,11 @@ export default function Page() {
                     <FollowerPointerCard key={`pointer-${project.id}`} title={project.title} className="w-full max-w-full aspect-video">
                       <GlassCard className="w-full h-full" logoSrc="/LMSLogo.svg">
                         <div className="absolute inset-0 [transform:translate3d(0,0,26px)] overflow-hidden rounded-[50px] flex items-center justify-center">
-                          <img
+                          <Image
                             src="/LMS.jpg"
                             alt={project.title}
-                            className="w-full h-full object-cover"
+                            fill
+                            className="object-cover"
                           />
                         </div>
                       </GlassCard>
@@ -299,10 +304,11 @@ export default function Page() {
                     <FollowerPointerCard key={`pointer-${project.id}`} title={project.title} className="w-full max-w-full aspect-video">
                       <GlassCard className="w-full h-full" hideLogo={true}>
                         <div className="absolute inset-0 [transform:translate3d(0,0,26px)] overflow-hidden rounded-[50px] flex items-center justify-center">
-                          <img
+                          <Image
                             src="/RouteMate.jpg"
                             alt={project.title}
-                            className="w-full h-full object-cover scale-125"
+                            fill
+                            className="object-cover scale-125"
                           />
                         </div>
                       </GlassCard>
@@ -312,10 +318,11 @@ export default function Page() {
                     <FollowerPointerCard key={`pointer-${project.id}`} title={project.title} className="w-full max-w-full aspect-[16/10]">
                       <GlassCard className="w-full h-full" logoSrc="/SnapCastLogo.svg">
                         <div className="absolute inset-0 [transform:translate3d(0,0,26px)] overflow-hidden rounded-[50px] flex items-center justify-center">
-                          <img
+                          <Image
                             src="/SnapCast.jpg"
                             alt={project.title}
-                            className="w-full h-full object-cover"
+                            fill
+                            className="object-cover"
                           />
                         </div>
                       </GlassCard>

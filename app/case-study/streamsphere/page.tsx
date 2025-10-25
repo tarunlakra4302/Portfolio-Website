@@ -3,6 +3,7 @@
 import React, { useEffect, useState } from 'react'
 import { useRouter } from 'next/navigation'
 import Link from 'next/link'
+import Image from 'next/image'
 import { motion } from 'framer-motion'
 import { ArrowLeft, Copy, Check, ExternalLink, Video, Upload, Lock, Search } from 'lucide-react'
 import { SlidingNumber } from '@/components/ui/sliding-number'
@@ -136,9 +137,11 @@ export default function StreamSphereCaseStudy() {
             </h2>
           }
         >
-          <img
+          <Image
             src="/SnapCast.jpg"
             alt="StreamSphere screen recording platform interface"
+            width={1200}
+            height={800}
             className="mx-auto rounded-2xl object-cover h-full object-left-top"
             draggable={false}
           />
@@ -257,7 +260,7 @@ export default function StreamSphereCaseStudy() {
                 <h3 className="text-sm font-bold uppercase tracking-wider text-gray-500 mb-3">Repository</h3>
                 <div className="flex flex-col gap-3 items-start">
                   <Link
-                    href="https://github.com/tarunlakra4302/streamsphere"
+                    href="https://github.com/tarunlakra4302/Stream"
                     target="_blank"
                     rel="noopener noreferrer"
                     className="relative inline-flex items-center gap-2 px-6 py-3 text-white font-semibold rounded-lg overflow-hidden group"
@@ -272,7 +275,7 @@ export default function StreamSphereCaseStudy() {
                     <ExternalLink className="w-4 h-4 relative z-10" />
                   </Link>
                   <a
-                    href="https://stream-sphere.vercel.app/"
+                    href="https://stream-m15b.vercel.app"
                     target="_blank"
                     rel="noopener noreferrer"
                   >
@@ -647,12 +650,8 @@ export default function StreamSphereCaseStudy() {
       {/* THANKS FOR READING */}
       <ThanksForReading
         previousProject={{
-          title: "LMS SaaS Platform",
-          url: "/case-study/lmssaas"
-        }}
-        nextProject={{
-          title: "Signalist Stock Tracker",
-          url: "/case-study/signalist"
+          title: "RouteMate",
+          url: "/case-study/routemate"
         }}
       />
 
