@@ -231,7 +231,7 @@ export default function AboutPage() {
         location="New Delhi, India"
         linkedinUrl="https://www.linkedin.com/in/tarun-lakra/"
         githubUrl="https://github.com/tarunlakra4302"
-        resumeUrl="/resume.pdf"
+        resumeUrl="https://drive.google.com/file/d/1uCC1Iam4_oSYYWcFfTqVhdws5F_l-222/view"
         className="relative z-10 bg-[#FAFAFA]"
       />
     </div>
