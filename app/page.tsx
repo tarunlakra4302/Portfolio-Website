@@ -274,7 +274,7 @@ export default function Page() {
                       <GlassCard className="w-full h-full" logoSrc="/SignalistLogo.svg">
                         <div className="absolute inset-0 [transform:translate3d(0,0,26px)] overflow-hidden rounded-[50px] flex items-center justify-center">
                           <img
-                            src="/signalist.jpg"
+                            src="/Signalist.jpg"
                             alt={project.title}
                             className="w-full h-full object-cover"
                           />
