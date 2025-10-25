@@ -14,7 +14,7 @@ const geistMono = Geist_Mono({
 
 export const metadata: Metadata = {
   title: "Tarun Lakra",
-  description: "Portfolio of Tarun Lakra - Product Designer & Full-Stack Engineer",
+  description: "Portfolio of Tarun Lakra - Software Developer & Full-Stack Engineer",
   icons: {
     icon: '/logo.svg',
   },
